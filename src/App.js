@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import Sidebar from './components/Sidebar';
+import Header from './components/Header';
+import Home from './components/Home';
+import Portfolio from './components/Portfolio';
+import About from './components/About';
+import Resume from './components/Resume';
+import Contact from './components/Contact';
+import Footer from './components/Footer';
+import AnimatedBackground from './components/AnimatedBackground';
+import './styles/reset.css';
+import './styles/main.css';
+import './styles/tailwind.css'; 
+import './styles/global.css'; 
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => {
+    return (
+        
+        <div className="App flex flex-col md:flex-row">
+                 
+
+            <Sidebar />
+            <div className="content md:ml-64 p-8 flex-1 text-primary">
+            <AnimatedBackground />
+                <Header />
+                <Home />
+                <Portfolio />
+                <About />
+                <Resume />
+                <Contact />
+                <Footer />
+            </div>
+        </div>
+    );
+};
 
 export default App;

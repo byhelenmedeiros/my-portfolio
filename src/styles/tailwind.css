@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.sidebar {
+  @apply bg-[#161616] border border-gray-700 rounded-lg text-white p-5 w-64 fixed top-0 left-0 h-full;
+}
+
+.sidebar__image {
+  @apply w-full rounded-full mb-4;
+}
+
+.sidebar__title {
+  @apply text-2xl font-semibold mb-2;
+}
+
+.sidebar__subtitle {
+  @apply text-xl mb-4;
+}
+
+.sidebar__link {
+  @apply block mb-2 no-underline text-white;
+}
