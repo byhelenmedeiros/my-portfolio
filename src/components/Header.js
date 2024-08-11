@@ -1,26 +1,12 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import classNames from 'classnames';
-import '../styles/global.css'; 
-
-const NavLink = ({ href, isActive, onClick, children }) => (
-  <a
-    href={href}
-    className={classNames(
-      'inline-flex items-center justify-center rounded-full transition-all duration-300 py-1 px-3 text-lg md:text-xl lg:text-2xl',
-      {
-        'text-white border border-gray-300': isActive,
-        'text-gray-400 hover:text-white': !isActive,
-      }
-    )}
-    onClick={onClick}
-  >
-    {children}
-  </a>
-);
+import { FaSun, FaMoon } from 'react-icons/fa';
 
 const Header = () => {
   const [activeLink, setActiveLink] = useState('home');
   const [scrolled, setScrolled] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const handleLinkClick = (section) => {
     setActiveLink(section);
@@ -28,14 +14,11 @@ const Header = () => {
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
+    setMenuOpen(false);
   };
 
   const handleScroll = useCallback(() => {
-    if (window.scrollY > 10) {
-      setScrolled(true);
-    } else {
-      setScrolled(false);
-    }
+    setScrolled(window.scrollY > 10);
   }, []);
 
   useEffect(() => {
@@ -43,59 +26,71 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [handleScroll]);
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuOpen && !event.target.closest('.hamburger-menu')) {
+        setMenuOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [menuOpen]);
+
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+    document.body.classList.toggle('dark-mode', !darkMode);
+  };
+
   return (
-    <header
-      className={classNames(
-        'fixed top-0 w-full font-syne transition-all duration-300',
-        {
-          'bg-transparent': !scrolled,
-          'bg-opacity-30 backdrop-blur-md border border-gray-200': scrolled,
-        }
-      )}
-      style={{ 
-        left: '0', 
-        right: '0', 
-        marginLeft: 'auto', 
-        marginRight: 'auto'
-      }}
-    >
-      <nav className="flex items-center justify-center space-x-4 md:space-x-6 lg:space-x-8 h-16 md:h-20 lg:h-24">
-        <NavLink
-          href="#home"
-          isActive={activeLink === 'home'}
-          onClick={() => handleLinkClick('home')}
-        >
-          Home
-        </NavLink>
-        <NavLink
-          href="#portfolio"
-          isActive={activeLink === 'portfolio'}
-          onClick={() => handleLinkClick('portfolio')}
-        >
-          Portfolio
-        </NavLink>
-        <NavLink
-          href="#about"
-          isActive={activeLink === 'about'}
-          onClick={() => handleLinkClick('about')}
-        >
-          About Me
-        </NavLink>
-        <NavLink
-          href="#resume"
-          isActive={activeLink === 'resume'}
-          onClick={() => handleLinkClick('resume')}
-        >
-          Resume
-        </NavLink>
-        <NavLink
-          href="#contact"
-          isActive={activeLink === 'contact'}
-          onClick={() => handleLinkClick('contact')}
-        >
-          Contact
-        </NavLink>
-      </nav>
+    <header className={classNames('header', { 'scrolled': scrolled })}>
+      <div className="nav-links flex items-center space-x-4 md:space-x-6 lg:space-x-8 ">
+        {['home', 'portfolio', 'about', 'resume', 'contact'].map((section) => (
+          <a
+            key={section}
+            href={`#${section}`}
+            className={classNames(
+              'nav-link text-lg md:text-xl lg:text-2xl',
+              {
+                'active': activeLink === section,
+                'inactive': activeLink !== section,
+              }
+            )}
+            onClick={() => handleLinkClick(section)}
+          >
+            {section.charAt(0).toUpperCase() + section.slice(1)}
+          </a>
+        ))}
+      </div>
+
+      <div className={`hamburger-menu ${menuOpen ? 'open' : ''}`}>
+        <button onClick={() => setMenuOpen(!menuOpen)}>
+          <div className="bar" />
+          <div className="bar" />
+          <div className="bar" />
+        </button>
+        <div className={`menu ${menuOpen ? 'open' : ''}`}>
+          {['home', 'portfolio', 'about', 'resume', 'contact'].map((section) => (
+            <a
+              key={section}
+              href={`#${section}`}
+              className={classNames(
+                'nav-link text-lg md:text-xl lg:text-2xl',
+                {
+                  'active': activeLink === section,
+                  'inactive': activeLink !== section,
+                }
+              )}
+              onClick={() => handleLinkClick(section)}
+            >
+              {section.charAt(0).toUpperCase() + section.slice(1)}
+            </a>
+          ))}
+          <div className="theme-toggle" onClick={toggleDarkMode}>
+            {darkMode ? <FaMoon size={24} /> : <FaSun size={24} />}
+            <span className="ml-2">{darkMode ? 'Dark' : 'Light'}</span>
+          </div>
+        </div>
+      </div>
     </header>
   );
 };

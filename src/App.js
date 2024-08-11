@@ -1,6 +1,5 @@
 import React from 'react';
 import Sidebar from './components/Sidebar';
-import Header from './components/Header';
 import Home from './components/Home';
 import Portfolio from './components/Portfolio';
 import About from './components/About';
@@ -14,24 +13,29 @@ import './styles/tailwind.css';
 import './styles/global.css'; 
 
 const App = () => {
-    return (
-        
-        <div className="App flex flex-col md:flex-row">
-                 
+  return (
+    <div className="relative min-h-screen overflow-hidden">
+      {/* Background Animation */}
+      <AnimatedBackground className="absolute inset-0 z-0" />
 
-            <Sidebar />
-            <div className="content md:ml-64 p-8 flex-1 text-primary">
-            <AnimatedBackground />
-                <Header />
-                <Home />
-                <Portfolio />
-                <About />
-                <Resume />
-                <Contact />
-                <Footer />
-            </div>
+      <div className="flex flex-col lg:flex-row h-full">
+        {/* Sidebar */}
+        <aside className="w-full lg:w-96 h-auto text-white p-6 z-10 mx-auto">
+          <Sidebar />
+        </aside>
+        {/* Main content */}
+        <div className="flex-1 mt-16 lg:mt-0 text-primary overflow-y-auto p-8">
+          <Home />
+            <About />
+          <Portfolio />
+        
+          <Resume />
+          <Contact />
+          <Footer />
         </div>
-    );
+      </div>
+    </div>
+  );
 };
 
 export default App;

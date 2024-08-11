@@ -2,158 +2,410 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Estilos  para a sidebar */
+/* Define animação fadeIn */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Estilo para a header da home */
+.home__header {
+  height: auto; 
+}
+
+/* Altura para dispositivos maiores que 1000px */
+@media (min-width: 1000px) {
+  .home__header {
+    height: 80vh;
+  }
+}
+
+/* Estilo para a sidebar */
 .sidebar {
   position: fixed;
   top: 50%;
-  left: 5%;
-  transform: translateY(-50%);
-  width: 25rem;
-  height: 40rem;
-  background-color: #161616;
-  border: 1px solid #393939;
+  left: 2%;
+  width: 22rem;
+  height: 60vh;
+  background-color: rgba(0, 0, 0, 0.355);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 1.5rem;
   padding: 1.25rem;
   color: white;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s ease-in-out;
+  backdrop-filter: blur(10px);
+  transition: opacity 1s ease-out;
+  z-index: 10;
+  transform: translateY(-50%);
 }
 
-.sidebar:hover {
-  transform: translateY(-50%) translateY(-0.1%);
+/* Modificações da sidebar para dispositivos menores que 1000px */
+@media (max-width: 1000px) {
+  .sidebar {
+    position: static;
+    
+    max-width: 60%;
+    margin: 15%  auto 0
+    ;
+    top: auto;
+    left: auto;
+    transform: none;
+    height: auto;
+  }
+  
+  .main-content {
+    margin-top: 2rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
-.sidebar img {
-  width: 100%;
-  border-radius: 50%;
-  margin-bottom: 1rem;
+/* Modificações da sidebar para dispositivos menores que 768px */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 18rem;
+    left: 50%;
+    top: 50%;
+  }
 }
 
-.sidebar h2 {
-  font-size: 1.5rem;
-  margin-bottom: 0.5rem;
+/* Modificações da sidebar para dispositivos menores que 460px */
+@media (max-width: 460px) {
+  .sidebar {
+    max-width: 80%;
+    left: 10%;
+  }
 }
 
-.sidebar h3 {
-  font-size: 1.25rem;
-  margin-bottom: 1rem;
+/* Animação da sidebar */
+.sidebar-enter {
+  animation: fadeIn 1s ease-out forwards;
 }
 
-.sidebar .social-icons {
+/* Estilos para links de navegação */
+.nav-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 18px;
+  padding: 0.25rem 0.75rem;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.nav-link.inactive {
+  color: #9ca3af;
+  border: 2px solid transparent;
+}
+
+.nav-link.active {
+  color: #ffffff;
+  border: 2px solid #ffffff;
+}
+
+.nav-link:hover {
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.096);
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  height: 150px;
+  width: 100%; 
+  z-index: 20;
   display: flex;
-  gap: 0.75rem;
-  margin-bottom: 1rem;
+  justify-content: center; 
+  align-items: center;
+  padding: 1rem;
+  transition: background 0.3s ease;
 }
 
-.sidebar .social-icons a {
-  color: #b3b3b3;
-  transition: color 0.3s ease-in-out;
+
+/* Ajustes do cabeçalho para dispositivos menores que 768px */
+@media (max-width: 768px) {
+  .header {
+    padding: 0 1rem;
+  }
 }
 
-.sidebar .social-icons a:hover {
-  color: white;
+/* Estilo para o menu hambúrguer */
+.hamburger-menu {
+  display: none;
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 30;
+}
+
+.hamburger-menu button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hamburger-menu .bar {
+  display: block;
+  width: 2rem;
+  height: 0.2rem;
+  background: #ffffff;
+  margin: 0.4rem auto;
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+.hamburger-menu.open .bar:nth-child(1) {
+  transform: rotate(45deg) translateY(0.5rem);
+}
+
+.hamburger-menu.open .bar:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger-menu.open .bar:nth-child(3) {
+  transform: rotate(-45deg) translateY(-0.5rem);
+}
+
+.hamburger-menu.open .menu {
+  display: block;
+  position: absolute;
+  top: 3rem;
+  right: 0;
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.hamburger-menu .menu {
+  display: none;
+  position: absolute;
+  top: 3rem;
+  right: 0;
+  background: rgba(0, 0, 0, 0.36);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  transform: translateY(-20px);
+  opacity: 0;
+}
+
+.hamburger-menu .menu.open {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.hamburger-menu .menu a {
+  display: block;
+  color: #ffffff;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.hamburger-menu .menu a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Estilo para o botão de alternância de tema */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.theme-toggle svg {
+  margin-left: 0.5rem;
+}
+
+/* Ajustes para dispositivos menores que 768px */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+
+  .hamburger-menu {
+    display: block;
+  }
+}
+
+/* Ajustes para dispositivos menores que 480px */
+@media (max-width: 480px) {
+  .hamburger-menu button {
+    top: 0.5rem;
+    right: 0.5rem;
+  }
+}
+
+/* Estilo para o botão de vidro */
+.glass-button {
+  display: inline-block;
+  padding: 24px 32px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  background-color: #8362858b;
+  color: rgba(255, 255, 255, 0.8);
+  letter-spacing: 2px;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: background-color 0.3s, transform 0.2s;
+  text-align: center;
+}
+
+.glass-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: scale(1.05);
+}
+
+.text__small{
+  border: #3425374e solid 1px;
+  max-width: 40%;
+  margin: auto;
+  border-radius: 12px;
+  padding: 2px;
+  letter-spacing: 3px;
+  color: #9ca3af;
+}
+.home__subtitle{
+  color: #716e75;
+
+}
+
+/*ABOUT*/
+.about__text-small {
+  display: inline-block; /* Ajusta a borda ao redor do texto */
+  border: #3425374e solid 1px;
+  border-radius: 12px;
+  padding: 2px 20px 2px 8px; /* Espaço adicional para a seta */
+  letter-spacing: 3px;
+  color: #9ca3af;
+  text-align: left;
+  position: relative;
+  transition: all 0.3s ease-in-out;
+  background-color: #716e751e;
+}
+
+
+.about__text-small:hover::after {
+  content: ''; /* O conteúdo será o ícone SVG */
+  width: 20px;
+  height: 20px;
+  background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" fill="%239ca3af" viewBox="0 0 24 24" width="24px" height="24px"%3E%3Cpath d="M0 0h24v24H0V0z" fill="none"/%3E%3Cpath d="M7.41 7.84L12 12.42l4.59-4.59L18 9.25l-6 6-6-6z"/%3E%3C/svg%3E');
+  background-size: cover;
+  position: absolute;
+  right: 2px; 
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 @media (max-width: 768px) {
-  .sidebar {
-    width: 20rem;
-    height: auto; 
-    top: 10%; 
-    left: 2%;
-  }
-
-  .sidebar h2 {
-    font-size: 1.25rem;
-  }
-
-  .sidebar h3 {
-    font-size: 1rem;
-  }
-
-  .sidebar .social-icons {
-    gap: 0.5rem;
-  }
-
-  .sidebar .social-icons a {
-    font-size: 1rem;
-  }
-
-  .sidebar button {
-    padding: 0.5rem;
+  .about__text-small {
+    font-size: 14px;
+    padding: 5px 12px 5px 5px; /* Ajuste de padding para responsividade */
+    letter-spacing: 2px;
   }
 }
 
 @media (max-width: 480px) {
-  .sidebar {
-    width: 90%;
-    left: 5%;
-    top: 5%;
-    height: auto; 
-  }
-
-  .sidebar h2 {
-    font-size: 1rem;
-  }
-
-  .sidebar h3 {
-    font-size: 0.875rem;
-  }
-
-  .sidebar .social-icons {
-    gap: 0.25rem;
-  }
-
-  .sidebar .social-icons a {
-    font-size: 0.875rem; 
-  }
-
-  .sidebar button {
-    padding: 0.5rem;
-    font-size: 0.875rem;
+  .about__text-small {
+    font-size: 12px;
+    padding: 4px 10px 4px 4px; /* Ajuste de padding para responsividade */
+    letter-spacing: 1px;
   }
 }
 
 
-.glass-button {
+.highlight {
   position: relative;
-  padding: 15px 30px;
-  border: none;
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.2);
-  color: white;
-  font-size: 16px;
-  cursor: pointer;
-  overflow: hidden;
-  backdrop-filter: blur(10px); /* Efeito de vidro */
-  transition: background 0.3s, transform 0.2s;
-  font-weight: 600;
+  font-weight: bold;
+  color: #6B7280; 
+  transition: color 0.3s ease-in-out;
 }
 
-.glass-button:hover {
-  background: rgba(255, 255, 255, 0.3);
-  transform: scale(1.05);
-}
-
-.glass-button .button-text {
-  position: relative;
-  z-index: 1;
-}
-
-.click-animation {
+.highlight::after {
+  content: '';
   position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 24px;
-  height: 24px;
-  transform: translate(-50%, -50%);
-  fill: transparent;
-  stroke: rgba(0, 0, 0, 0.8);
-  stroke-width: 2;
-  stroke-dasharray: 40;
-  stroke-dashoffset: 40;
-  transition: stroke-dashoffset 0.3s ease;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background:  #83628577;
+  transition: all 0.3s ease-in-out;
+  transform: scaleX(0);
+  transform-origin: right;
 }
 
-.glass-button:active .click-animation {
+.highlight:hover {
+  color: #ced1d7; 
+}
+
+.highlight:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.about__container-text {
+  background-color: rgba(61, 61, 61, 0.642); 
+  border-radius: 12px;
+  border: solid 1px #6b728036;
+  backdrop-filter: blur(10px); 
+  -webkit-backdrop-filter: blur(10px); 
+  position: relative;
+  overflow: hidden; 
+  padding: 1.5em;
+  margin-top: 2em;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 
+  0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.about__container-text p {
+  margin-bottom: 1.5em; 
+  line-height: 1.6; 
+}
+
+
+
+.about__text-text{
+  color: #ffffff9a;
+  
+}
+
+.about__container-one, .about__container-two, .about__container-three  {
+  border: #6b72802c solid 1px;
+  padding: 2em 1em;
+  margin: 1.5em 0;
+  border-radius: 12px;
+  width: 40%;
+  
+}
+
+.icon {
+  width: 50px;
+  height: 50px;
+  stroke: #83628564; 
+  stroke-width: 2;
+  fill: none;
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  transition: stroke-dashoffset 0.5s ease-in-out;
+}
+
+.about__container-one:hover .icon,
+.about__container-two:hover .icon,
+.about__container-three:hover .icon {
   stroke-dashoffset: 0;
 }
