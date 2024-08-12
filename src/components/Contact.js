@@ -34,9 +34,9 @@ const Contact = () => {
     };
 
     return (
-        <section id="contact" className="relative p-8 md:p-20 text-white flex flex-col lg:flex-row">
+        <section id="contact" className="relative lg:p-20 p-0 md:m-8 text-white flex flex-col lg:flex-row">
             {/* Contact Form */}
-            <div className={`flex flex-col bg-gray-800 rounded-lg border border-gray-600 p-6 md:p-8 shadow-lg transition-transform ${showThankYou ? 'translate-x-full' : ''} lg:w-1/2 lg:ml-8 lg:order-1`}>
+            <div className={`flex flex-col bg-gray-800 rounded-lg border border-gray-600 p-6 md:p-8  mt-8 lg:mt-0 shadow-lg transition-transform ${showThankYou ? 'translate-x-full' : ''} lg:w-1/2 lg:ml-8 lg:order-1`}>
                 <h2 className="text-2xl font-bold mb-6 text-center">Contact Us</h2>
                 <motion.form
                     className="flex flex-col gap-6"

@@ -5,48 +5,55 @@ import { motion } from 'framer-motion';
 const experiences = [
     {
         id: 1,
-        period: '2014 - now',
-        title: 'Founder & Creative Director',
-        company: 'Joss Studio',
-        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi tempora perferendis vero officia enim impedit voluptatem dignissimos, veniam ratione est alias rerum aperiam, nam aliquam reprehenderit iste dolor.'
+        period: 'fevereiro de 2024 - Presente',
+        title: 'Desenvolvedor web',
+        company: 'Hovo Comunicativo',
+        description: 'Atuando como Desenvolvedor Web, trabalhei em projetos de desenvolvimento de websites e plugins para WordPress, focando na implementação de novas funcionalidades, integração de tecnologias, otimização de performance e manutenção contínua.'
     },
     {
         id: 2,
-        period: '2010 - 2014',
-        title: 'Senior UI / UX Designer',
-        company: 'Google Inc',
-        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi tempora perferendis vero officia enim impedit voluptatem dignissimos, veniam ratione est alias rerum aperiam, nam aliquam reprehenderit iste dolor.'
+        period: 'agosto de 2023 - janeiro de 2024',
+        title: 'Desenvolvedor web',
+        company: 'AudiçãoActiva, BelAudição, Unipessoal Lda.',
+        description: 'Desenvolvi websites e plugins para WordPress, colaborando com equipes multifuncionais para a integração de novas tecnologias, otimização de performance e manutenção contínua das landing pages e websites da empresa.'
     },
     {
         id: 3,
-        period: '2008 - 2010',
-        title: 'Graphic Designer',
-        company: 'Joss Studio',
-        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi tempora perferendis vero officia enim impedit voluptatem dignissimos, veniam ratione est alias rerum aperiam, nam aliquam reprehenderit iste dolor.'
+        period: 'abril de 2023 - julho de 2023',
+        title: 'Atendente de recepção',
+        company: 'Instituto Politécnico de Viana do Castelo',
+        description: 'Atuei como atendente de recepção, proporcionando suporte administrativo e atendimento ao cliente em um ambiente educacional.'
+    },
+    {
+        id: 4,
+        period: 'setembro de 2018 - abril de 2019',
+        title: 'Designer da web',
+        company: 'Rede Formar',
+        description: 'Como Web Designer, fui responsável por criar layouts visuais para websites e desenvolver interfaces amigáveis, contribuindo para uma melhor experiência do usuário.'
     }
 ];
 
 const education = [
     {
         id: 1,
-        period: '2004 - 2008',
-        degree: 'Master in Design',
-        institution: 'New York University',
-        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi tempora perferendis vero officia enim impedit voluptatem dignissimos, veniam ratione est alias rerum aperiam, nam aliquam reprehenderit iste dolor.'
+        period: 'setembro de 2022 - junho de 2024',
+        degree: 'CTeSP, Desenvolvimento web e multimédia',
+        institution: 'Instituto Politécnico de Viana do Castelo',
+        description: 'Curso Técnico Superior Profissional em Desenvolvimento Web e Multimédia, focado em adquirir competências técnicas e práticas em criação e manutenção de websites e conteúdo multimídia.'
     },
     {
         id: 2,
-        period: '2000 - 2004',
-        degree: 'Bachelor of Arts',
-        institution: 'University of London',
-        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi tempora perferendis vero officia enim impedit voluptatem dignissimos, veniam ratione est alias rerum aperiam, nam aliquam reprehenderit iste dolor.'
+        period: 'agosto de 2022 - agosto de 2023',
+        degree: 'Ensino Secundário Profissional, Programação de Computadores - Geral',
+        institution: 'Tecnisign',
+        description: 'Formação profissional em Programação de Computadores, abrangendo conhecimentos gerais em linguagens de programação e desenvolvimento de software.'
     },
     {
         id: 3,
-        period: '1998 - 2000',
-        degree: 'Artist of College',
-        institution: 'University of Sydney',
-        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi tempora perferendis vero officia enim impedit voluptatem dignissimos, veniam ratione est alias rerum aperiam, nam aliquam reprehenderit iste dolor.'
+        period: 'março de 2022 - julho de 2022',
+        degree: 'Design UI/UX',
+        institution: 'Cesae Digital - Centro para o Desenvolvimento de Competências Digitais',
+        description: 'Curso focado em design de interfaces e experiência do usuário, cobrindo princípios de design visual e criação de interfaces intuitivas e eficazes.'
     }
 ];
 
@@ -93,7 +100,7 @@ const Resume = () => {
     }, []);
 
     return (
-        <section id="resume" className="p-8 md:p-20">
+        <section id="resume" className="lg:p-20 p-0 md:m-8">
             <h2 className="about__text-small text-center md:text-left">
                 Resume
             </h2>
@@ -105,13 +112,7 @@ const Resume = () => {
                 {/* Experiences Column */}
                 <div id="experiences" className={`space-y-12 ${showExperiences ? 'fade-in' : 'hidden'}`}>
                     <h2 className="text-2xl font-bold text-white mb-6 flex items-center">
-                        <svg className="icon w-6 h-6 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                            <path d="M18 8h1a3 3 0 0 1 0 6h-1" strokeWidth="2" />
-                            <path d="M2 8h16v10a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z" strokeWidth="2" />
-                            <line x1="6" y1="1" x2="6" y2="4" strokeWidth="2" />
-                            <line x1="10" y1="1" x2="10" y2="4" strokeWidth="2" />
-                            <line x1="14" y1="1" x2="14" y2="4" strokeWidth="2" />
-                        </svg>
+                        <FaBriefcase size={24} className="mr-2" />
                         My Experiences
                     </h2>
                     <div className="relative">
@@ -137,10 +138,7 @@ const Resume = () => {
                 {/* Education Column */}
                 <div id="education" className={`space-y-12 ${showEducation ? 'fade-in' : 'hidden'}`}>
                     <h2 className="text-2xl font-bold text-white mb-6 flex items-center">
-                        <svg className="icon w-6 h-6 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                            <path d="M16 3h-4l-2 4h8l-2-4z" strokeWidth="2" />
-                            <rect x="3" y="7" width="18" height="14" rx="2" ry="2" strokeWidth="2" />
-                        </svg>
+                        <FaGraduationCap size={24} className="mr-2" />
                         My Education
                     </h2>
                     <div className="relative">

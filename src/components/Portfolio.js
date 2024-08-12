@@ -65,7 +65,7 @@ const Portfolio = () => {
     };
 
     return (
-        <section id="portfolio" className="p-20 md:m-8">
+        <section id="portfolio" className="lg:p-20 p-0 md:m-8">
             <h2 className="portfolio__text-small text-center md:text-left">Portfolio</h2>
     
             <h2 className='about__text-name text-white m-6 text-2xl font-bold hover:text-[#836285] transition-colors duration-300'>

@@ -18,13 +18,13 @@ const App = () => {
       {/* Background Animation */}
       <AnimatedBackground className="absolute inset-0 z-0" />
 
-      <div className="flex flex-col lg:flex-row h-full">
+      <div className="flex flex-col lg:flex-row ">
         {/* Sidebar */}
         <aside className="w-full lg:w-96 h-auto text-white p-6 z-10 mx-auto">
           <Sidebar />
         </aside>
         {/* Main content */}
-        <div className="flex-1 mt-16 lg:mt-0 text-primary overflow-y-auto p-8">
+        <div className="flex-1 mt-16 lg:mt-0 text-primary overflow-y-auto p-4">
           <Home />
             <About />
           <Portfolio />

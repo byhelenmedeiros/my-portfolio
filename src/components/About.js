@@ -2,7 +2,7 @@ import React from 'react';
 
 const About = () => {
     return (
-        <section id="about" className="p-20 md:m-8">
+        <section id="about" className="lg:p-20 p-0 md:m-8">
             <h2 className="about__text-small text-center md:text-left">About Me</h2>
             <h2 className='about__text-name text-white mt-6 text-2xl  font-bold hover:text-[#836285] transition-colors duration-300'>Hello! Nice to meet you.  </h2>
             <div className="about__container flex flex-col md:flex-row md:gap-9 items-center">
@@ -19,32 +19,32 @@ const About = () => {
                         In <span className="highlight">2019</span>, I emigrated and spent some time away from the field I love so much. However, in <span className="highlight">2022</span>, everything changed when I began a UI/UX design course. In the same year, I started a course in Web and Multimedia Development and simultaneously enrolled in a Level 4 E-learning Computer Programmer course. It was a two-year journey, with my last year focused solely on gaining experience—details of which you can find in my CV. Since then, I have dedicated nearly a year to web design and web development projects.
                     </p>
                 </div>
-                <div className="about__container flex-1 w-full flex flex-col gap-3 ">
-                    <div className="about__container-one flex items-center text-gray-300">
-                        <svg className="icon mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                            <circle cx="12" cy="12" r="10" stroke-width="2" />
-                            <path d="M12 6v6l4 2" stroke-width="2" />
+                <div className="about__container flex-1 w-full flex flex-col gap-3 mt-6 md:mt-0">
+                    <div className="about__container-one flex items-center text-gray-300 bg-gray-800 p-4 rounded-lg w-full">
+                        <svg className="icon mr-2 w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <circle cx="12" cy="12" r="10" strokeWidth="2" />
+                            <path d="M12 6v6l4 2" strokeWidth="2" />
                         </svg>
-                        <span>5+</span>
+                        <span className="text-lg font-semibold">5+</span>
                         <p className="ml-2">Years of Experience</p>
                     </div>
-                    <div className="about__container-two flex items-center text-gray-300">
-                        <svg className="icon mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                            <rect x="3" y="7" width="18" height="14" rx="2" ry="2" stroke-width="2" />
-                            <path d="M16 3h-4l-2 4h8l-2-4z" stroke-width="2" />
+                    <div className="about__container-two flex items-center text-gray-300 bg-gray-800 p-4 rounded-lg w-full">
+                        <svg className="icon mr-2 w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <rect x="3" y="7" width="18" height="14" rx="2" ry="2" strokeWidth="2" />
+                            <path d="M16 3h-4l-2 4h8l-2-4z" strokeWidth="2" />
                         </svg>
-                        <span>30+</span>
+                        <span className="text-lg font-semibold">30+</span>
                         <p className="ml-2">Projects</p>
                     </div>
-                    <div className="about__container-three flex items-center text-gray-300">
-                        <svg className="icon mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                            <path d="M18 8h1a3 3 0 0 1 0 6h-1" stroke-width="2" />
-                            <path d="M2 8h16v10a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z" stroke-width="2" />
-                            <line x1="6" y1="1" x2="6" y2="4" stroke-width="2" />
-                            <line x1="10" y1="1" x2="10" y2="4" stroke-width="2" />
-                            <line x1="14" y1="1" x2="14" y2="4" stroke-width="2" />
+                    <div className="about__container-three flex items-center text-gray-300 bg-gray-800 p-4 rounded-lg w-full">
+                        <svg className="icon mr-2 w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M18 8h1a3 3 0 0 1 0 6h-1" strokeWidth="2" />
+                            <path d="M2 8h16v10a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z" strokeWidth="2" />
+                            <line x1="6" y1="1" x2="6" y2="4" strokeWidth="2" />
+                            <line x1="10" y1="1" x2="10" y2="4" strokeWidth="2" />
+                            <line x1="14" y1="1" x2="14" y2="4" strokeWidth="2" />
                         </svg>
-                        <span>50+</span>
+                        <span className="text-lg font-semibold">50+</span>
                         <p className="ml-2">Cups of Coffee</p>
                     </div>
                 </div>
