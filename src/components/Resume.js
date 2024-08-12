@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { FaBriefcase, FaGraduationCap, FaHtml5, FaCss3Alt, FaPhp, FaWordpress, FaElementor, FaJsSquare, FaReact, FaGit, FaGithub } from 'react-icons/fa';
-import { useInView } from 'react-intersection-observer';
-
+import { motion } from 'framer-motion';
 
 const experiences = [
     {
@@ -66,6 +65,7 @@ const skills = [
 const Resume = () => {
     const [showExperiences, setShowExperiences] = useState(false);
     const [showEducation, setShowEducation] = useState(false);
+    const [selectedSkill, setSelectedSkill] = useState(null);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -164,18 +164,35 @@ const Resume = () => {
                 </div>
             </div>
 
-          {/* Skills Section */}
-          <div id="skills" className="mt-16">
+            {/* Skills Section */}
+            <div id="skills" className="mt-16">
                 <h2 className="text-2xl font-bold text-white mb-6 flex items-center">
                     <FaBriefcase size={24} className="mr-2" />
                     My Skills
                 </h2>
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 gap-6">
                     {skills.map((skill) => (
-                        <div key={skill.id} className="flex flex-col items-center text-white">
+                        <motion.div
+                            key={skill.id}
+                            className="group relative flex flex-col items-center bg-gray-800 p-4 rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-105"
+                            onMouseEnter={() => setSelectedSkill(skill.id)}
+                            onMouseLeave={() => setSelectedSkill(null)}
+                        >
                             {skill.icon}
-                            <p className="mt-2 text-sm">{skill.name}</p>
-                        </div>
+                            <p className="mt-2 text-sm font-semibold text-white">{skill.name}</p>
+
+                            {/* Tooltip */}
+                            {selectedSkill === skill.id && (
+                                <motion.div
+                                    className="absolute bottom-full mb-2 w-48 p-2 bg-black text-white text-xs rounded-md shadow-lg text-center"
+                                    initial={{ opacity: 0, y: 10 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    exit={{ opacity: 0, y: 10 }}
+                                >
+                                    {skill.description || `Proficient in ${skill.name}`}
+                                </motion.div>
+                            )}
+                        </motion.div>
                     ))}
                 </div>
             </div>
