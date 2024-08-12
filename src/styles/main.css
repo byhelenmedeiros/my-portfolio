@@ -252,9 +252,9 @@
 }
 
 /* Estilo para o botão de vidro */
-.glass-button {
+.glass-button{
   display: inline-block;
-  padding: 24px 32px;
+  padding: 14px 32px;
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 15px;
   background-color: #8362858b;
@@ -264,6 +264,7 @@
   text-transform: uppercase;
   transition: background-color 0.3s, transform 0.2s;
   text-align: center;
+  
 }
 
 .glass-button:hover {
@@ -286,7 +287,7 @@
 }
 
 /*ABOUT*/
-.about__text-small {
+.about__text-small, .portfolio__text-small {
   display: inline-block; /* Ajusta a borda ao redor do texto */
   border: #3425374e solid 1px;
   border-radius: 12px;
@@ -301,7 +302,7 @@
 
 
 .about__text-small:hover::after {
-  content: ''; /* O conteúdo será o ícone SVG */
+  content: ''; 
   width: 20px;
   height: 20px;
   background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" fill="%239ca3af" viewBox="0 0 24 24" width="24px" height="24px"%3E%3Cpath d="M0 0h24v24H0V0z" fill="none"/%3E%3Cpath d="M7.41 7.84L12 12.42l4.59-4.59L18 9.25l-6 6-6-6z"/%3E%3C/svg%3E');
@@ -315,7 +316,7 @@
 @media (max-width: 768px) {
   .about__text-small {
     font-size: 14px;
-    padding: 5px 12px 5px 5px; /* Ajuste de padding para responsividade */
+    padding: 5px 12px 5px 5px; 
     letter-spacing: 2px;
   }
 }
@@ -323,7 +324,7 @@
 @media (max-width: 480px) {
   .about__text-small {
     font-size: 12px;
-    padding: 4px 10px 4px 4px; /* Ajuste de padding para responsividade */
+    padding: 4px 10px 4px 4px; 
     letter-spacing: 1px;
   }
 }
@@ -408,4 +409,140 @@
 .about__container-two:hover .icon,
 .about__container-three:hover .icon {
   stroke-dashoffset: 0;
+}
+
+.portfolio__image-img {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.5s ease-in-out;
+}
+
+.portfolio__image-img-enter {
+  transform: translateX(100%);
+}
+.portfolio__image-img-enter-active {
+  transform: translateX(0);
+}
+.portfolio__image-img-exit {
+  transform: translateX(0);
+}
+.portfolio__image-img-exit-active {
+  transform: translateX(-100%);
+}
+
+.portfolio__image-img img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  transition: opacity 0.5s ease, border 0.3s ease;
+}
+
+.image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.portfolio__image-img:hover .image-overlay {
+  opacity: 1;
+}
+
+.project-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+
+
+.portfolio__image-img:hover img {
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.portfolio__modal{
+  background: #51535798;
+  border: solid 1px #b1b1b162;
+  backdrop-filter: blur(10px);
+
+}
+
+/* Resume.css */
+@keyframes drawIcon {
+  0% {
+      stroke-dasharray: 1000;
+      stroke-dashoffset: 1000;
+  }
+  100% {
+      stroke-dasharray: 1000;
+      stroke-dashoffset: 0;
+  }
+}
+
+.icon {
+  width: 50px;
+  height: 50px;
+  stroke: #836285; /* Change to your desired stroke color */
+  stroke-width: 2;
+  fill: none;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  transition: stroke-dashoffset 0.5s ease-in-out;
+}
+
+
+.timeline-item:hover .icon {
+  stroke-dashoffset: 0;
+}
+
+.hidden {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-in, transform 0.6s ease-in;
+}
+
+.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.icon {
+  width: 50px;
+  height: 50px;
+  stroke: #836285;
+  stroke-width: 2;
+  fill: none;
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  transition: stroke-dashoffset 0.5s ease-in-out;
+}
+
+.icon:hover {
+  stroke-dashoffset: 0;
+}
+
+.skill-item {
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.skill-icon {
+  color: #4a4a4a; /* Gray color for default state */
+}
+
+.skill-item:hover .skill-icon {
+  color: inherit; /* Original color on hover */
+  transform: scale(1.5); /* Increase size on hover */
 }

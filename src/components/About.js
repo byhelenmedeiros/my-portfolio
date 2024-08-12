@@ -2,12 +2,15 @@ import React from 'react';
 
 const About = () => {
     return (
-        <section id="about" className="m-0 md:m-8">
+        <section id="about" className="p-20 md:m-8">
             <h2 className="about__text-small text-center md:text-left">About Me</h2>
+            <h2 className='about__text-name text-white mt-6 text-2xl  font-bold hover:text-[#836285] transition-colors duration-300'>Hello! Nice to meet you.  </h2>
             <div className="about__container flex flex-col md:flex-row md:gap-9 items-center">
+                
                 <div className="about__container-text flex-1 w-full md:mr-4">
+                  
                     <p className="about__text-text text-sm md:text-base">
-                        Hello, my name is Helen. I'm from Minas Gerais, Brazil, and I've been living in Portugal for over five years. During these past years, I've focused on my education in Portugal, and I currently reside in Viana do Castelo.
+                    My name is Helen, I'm from Minas Gerais, Brazil, and I've been living in Portugal for over five years. During these past years, I've focused on my education in Portugal, and I currently reside in Viana do Castelo.
                     </p>
                     <p className="about__text-text text-sm md:text-base">
                         In <span className="highlight">2017</span>, I started developing websites as a freelancer using Elementor. I had already been deeply interested in programming, and during this period, I also worked as a graphic designer, creating visual identities and digital media creatives. In <span className="highlight">2018</span>, I landed my first job as a web designer, which solidified my decision to pursue this career path.
