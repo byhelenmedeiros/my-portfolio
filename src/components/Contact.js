@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import axios from 'axios';
-import { FaUserAlt, FaEnvelope, FaCommentAlt, FaPaperPlane, FaCheckCircle, FaExclamationCircle } from 'react-icons/fa';
+import { FaEnvelope } from 'react-icons/fa';
+
 
 const Contact = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
+    const [subject, setSubject] = useState('');
     const [message, setMessage] = useState('');
     const [status, setStatus] = useState('');
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -17,9 +19,10 @@ const Contact = () => {
         setStatus('');
 
         try {
-            await axios.post('/api/send-email', { name, email, message });
+            await axios.post('/api/send-email', { name, email, subject, message });
             setName('');
             setEmail('');
+            setSubject('');
             setMessage('');
             setStatus('Message sent successfully!');
             setShowThankYou(true);
@@ -43,7 +46,9 @@ const Contact = () => {
                     transition={{ duration: 0.6 }}
                 >
                     <div className="relative">
+                        <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">Your Name</label>
                         <input
+                            id="name"
                             type="text"
                             placeholder="Your Name"
                             required
@@ -51,16 +56,11 @@ const Contact = () => {
                             value={name}
                             onChange={(e) => setName(e.target.value)}
                         />
-                        <motion.div
-                            className="absolute top-3 right-3 text-gray-400"
-                            animate={{ opacity: name ? 1 : 0 }}
-                            transition={{ duration: 0.3 }}
-                        >
-                            <FaUserAlt />
-                        </motion.div>
                     </div>
                     <div className="relative">
+                        <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">Your Email</label>
                         <input
+                            id="email"
                             type="email"
                             placeholder="Your Email"
                             required
@@ -68,36 +68,40 @@ const Contact = () => {
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                         />
-                        <motion.div
-                            className="absolute top-3 right-3 text-gray-400"
-                            animate={{ opacity: email ? 1 : 0 }}
-                            transition={{ duration: 0.3 }}
-                        >
-                            <FaEnvelope />
-                        </motion.div>
                     </div>
                     <div className="relative">
+                        <label htmlFor="subject" className="block text-sm font-medium text-gray-300 mb-2">Subject</label>
+                        <select
+                            id="subject"
+                            required
+                            className="w-full p-3 border border-gray-600 rounded bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-blue-400 transition-transform duration-300"
+                            value={subject}
+                            onChange={(e) => setSubject(e.target.value)}
+                        >
+                            <option value="" disabled>Select Subject</option>
+                            <option value="Inquiry">Inquiry</option>
+                            <option value="Quote">Quote</option>
+                            <option value="Pricing">Pricing</option>
+                            <option value="Others">Others</option>
+                        </select>
+                    </div>
+                    <div className="relative">
+                        <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">Your Message</label>
                         <textarea
+                            id="message"
                             placeholder="Your Message"
                             required
                             className="w-full p-3 border border-gray-600 rounded bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-400 transition-transform duration-300"
                             value={message}
                             onChange={(e) => setMessage(e.target.value)}
                         ></textarea>
-                        <motion.div
-                            className="absolute top-3 right-3 text-gray-400"
-                            animate={{ opacity: message ? 1 : 0 }}
-                            transition={{ duration: 0.3 }}
-                        >
-                            <FaCommentAlt />
-                        </motion.div>
                     </div>
                     <button
                         type="submit"
-                        className={`flex items-center justify-center bg-blue-500 text-white p-3 rounded hover:bg-blue-600 transition-colors duration-300 ${isSubmitting ? 'cursor-not-allowed opacity-50' : ''}`}
+                        className={`glass-button-contact flex items-center justify-center p-2.5 rounded transition-colors duration-300 ${isSubmitting ? 'cursor-not-allowed opacity-50' : ''}`}
                         disabled={isSubmitting}
                     >
-                        {isSubmitting ? 'Sending...' : <><FaPaperPlane className="mr-2" /> Send Message</>}
+                        {isSubmitting ? 'Sending...' : 'Send Message'}
                     </button>
                     {status && (
                         <motion.p
@@ -106,7 +110,6 @@ const Contact = () => {
                             animate={{ opacity: 1 }}
                             transition={{ duration: 0.5 }}
                         >
-                            {status.includes('successfully') ? <FaCheckCircle className="inline mr-2" /> : <FaExclamationCircle className="inline mr-2" />}
                             {status}
                         </motion.p>
                     )}
@@ -124,7 +127,7 @@ const Contact = () => {
             </div>
 
             {/* Rotating Text Section */}
-            <div className="flex items-center justify-center lg:w-1/2 lg:order-2">
+            <div className="flex items-center justify-center lg:w-1/2 lg:order-2 mt-10 lg:mt-0">
                 <motion.div
                     className="relative w-32 h-32 md:w-48 md:h-48 lg:w-64 lg:h-64 flex items-center justify-center"
                     animate={{ rotate: 360 }}
